@@ -11,8 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     
     var numberCounter = 0
+    var numberForColor: Float = 0.0
     
-
     let counterTextView: UITextView = {
         let textView = UITextView()
         var text = "0"
@@ -55,7 +55,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.init(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+        view.backgroundColor = UIColor.init(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
         setupLayout()
         tapButton.addTarget(self, action: #selector(ViewController.buttonTapped), for: .touchUpInside)
         resetButton.addTarget(self, action: #selector(ViewController.buttonResetted), for: .touchUpInside)
@@ -63,12 +63,16 @@ class ViewController: UIViewController {
     
     @objc func buttonTapped() {
         numberCounter += 1
+        numberForColor += 1.0
         counterTextView.text = "\(numberCounter)"
+        view.backgroundColor = UIColor.init(red: CGFloat((255.0 - numberForColor)/255.0), green: CGFloat((255.0 - numberForColor)/255.0), blue: CGFloat((255.0 - numberForColor)/255.0), alpha: 1.0)
     }
     
     @objc func buttonResetted() {
         numberCounter = 0
+        numberForColor = 0.0
         counterTextView.text = "\(numberCounter)"
+        view.backgroundColor = UIColor.init(red: CGFloat((255.0 - numberForColor)/255.0), green: CGFloat((255.0 - numberForColor)/255.0), blue: CGFloat((255.0 - numberForColor)/255.0), alpha: 1.0)
     }
 
     private func setupLayout() {
